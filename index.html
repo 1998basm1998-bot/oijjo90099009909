@@ -1,1 +1,158 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام حجوزات - ستوديو زوم</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
 
+    <header class="navbar">
+        <div class="logo">ستوديو زوم</div>
+        <div class="nav-buttons">
+            <button id="btn-brides" class="nav-btn">أسماء العرسان</button>
+            <button id="btn-daily" class="nav-btn active">اليوم والتاريخ (الرئيسية)</button>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <section id="section-brides" class="view-section hidden">
+            <h2 class="section-title">متطلبات العرسان</h2>
+            <div class="form-grid">
+                <div class="input-group">
+                    <label>أسماء العرسان</label>
+                    <input type="text" placeholder="أدخل أسماء العرسان">
+                </div>
+                <div class="input-group">
+                    <label>التاريخ</label>
+                    <input type="date">
+                </div>
+                <div class="input-group">
+                    <label>القاعة</label>
+                    <input type="text" placeholder="اسم القاعة">
+                </div>
+                <div class="input-group">
+                    <label>العرض</label>
+                    <input type="text" placeholder="نوع العرض">
+                </div>
+                <div class="input-group">
+                    <label>رقم الهاتف</label>
+                    <input type="tel" placeholder="07XX XXX XXXX">
+                </div>
+                <div class="input-group">
+                    <label>تاريخ طباعة الفلاش</label>
+                    <input type="date">
+                </div>
+                <div class="input-group">
+                    <label>طباعة الصور</label>
+                    <input type="text" placeholder="تفاصيل طباعة الصور">
+                </div>
+                <div class="input-group">
+                    <label>تاريخ استلام الفلاش</label>
+                    <input type="date">
+                </div>
+                <div class="input-group">
+                    <label>تاريخ استلام الصور</label>
+                    <input type="date">
+                </div>
+            </div>
+            <button class="save-btn">حفظ البيانات</button>
+        </section>
+
+        <section id="section-daily" class="view-section">
+            <div class="date-header">
+                <h2 class="section-title">حجوزات اليوم</h2>
+                <input type="date" id="current-date-picker" class="date-picker">
+            </div>
+            
+            <div class="bookings-grid">
+                <div class="booking-card" onclick="openBookingModal(1)">
+                    <h3>حجز 1</h3>
+                    <p>اضغط لإضافة/عرض التفاصيل</p>
+                </div>
+                <div class="booking-card" onclick="openBookingModal(2)">
+                    <h3>حجز 2</h3>
+                    <p>اضغط لإضافة/عرض التفاصيل</p>
+                </div>
+                <div class="booking-card" onclick="openBookingModal(3)">
+                    <h3>حجز 3</h3>
+                    <p>اضغط لإضافة/عرض التفاصيل</p>
+                </div>
+                <div class="booking-card" onclick="openBookingModal(4)">
+                    <h3>حجز 4</h3>
+                    <p>اضغط لإضافة/عرض التفاصيل</p>
+                </div>
+                <div class="booking-card" onclick="openBookingModal(5)">
+                    <h3>حجز 5</h3>
+                    <p>اضغط لإضافة/عرض التفاصيل</p>
+                </div>
+                <div class="booking-card" onclick="openBookingModal(6)">
+                    <h3>حجز 6</h3>
+                    <p>اضغط لإضافة/عرض التفاصيل</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="booking-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <h2 id="modal-title">تفاصيل الحجز</h2>
+            
+            <div class="modal-form">
+                <div class="input-group full-width">
+                    <label>أسماء العرسان</label>
+                    <input type="text" placeholder="الاسم الكامل">
+                </div>
+                <div class="input-group">
+                    <label>اسم القاعة</label>
+                    <input type="text" placeholder="اسم قاعة المناسبة">
+                </div>
+                <div class="input-group">
+                    <label>رقم الهاتف</label>
+                    <input type="tel" placeholder="رقم الموبايل">
+                </div>
+                <div class="input-group full-width">
+                    <label>نوع العرض</label>
+                    <select id="offer-type">
+                        <option value="">-- اختر نوع العرض --</option>
+                        <option value="نورمال">1- نورمال</option>
+                        <option value="الاول">2- الأول</option>
+                        <option value="الثاني">3- الثاني</option>
+                        <option value="دايموند">4- دايموند</option>
+                        <option value="زوم ماكس">5- زوم ماكس</option>
+                        <option value="زوم vip">6- زوم VIP</option>
+                        <option value="جلسة تصوير">7- جلسة تصوير</option>
+                        <option value="شاشة صور">8- شاشة صور</option>
+                        <option value="شاشة صور و طيارة">9- شاشة صور + طيارة</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>المبلغ الكلي</label>
+                    <input type="number" id="total-amount" placeholder="0" oninput="calculateRemaining()">
+                </div>
+                <div class="input-group">
+                    <label>الواصل</label>
+                    <input type="number" id="paid-amount" placeholder="0" oninput="calculateRemaining()">
+                </div>
+                <div class="input-group full-width">
+                    <label>الباقي</label>
+                    <input type="number" id="remaining-amount" placeholder="0" readonly class="readonly-input">
+                </div>
+                <div class="input-group full-width">
+                    <label>الملاحظات</label>
+                    <textarea rows="3" placeholder="أضف أي ملاحظات هنا..."></textarea>
+                </div>
+                
+                <button class="save-btn full-width" onclick="closeModal()">حفظ الحجز</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
